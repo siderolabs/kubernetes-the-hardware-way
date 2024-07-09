@@ -1,30 +1,29 @@
 # Prerequisites
 
-In this lab you will review the machine requirements necessary to follow this tutorial.
+In this lab you will install the necessary commands needed to create your cluster.
 
-## Virtual or Physical Machines
+## talosctl
 
-This tutorial requires four (4) virtual or physical ARM64 machines running Debian 12 (bookworm). The follow table list the four machines and thier CPU, memory, and storage requirements.
+Talos Linux does not have ssh.
+All configuration is sent over the Talos machine API and you will need the `talosctl` command installed to interact with the system.
 
-| Name    | Description            | CPU | RAM   | Storage |
-|---------|------------------------|-----|-------|---------|
-| jumpbox | Administration host    | 1   | 512MB | 10GB    |
-| server  | Kubernetes server      | 1   | 2GB   | 20GB    |
-| node-0  | Kubernetes worker node | 1   | 2GB   | 20GB    |
-| node-1  | Kubernetes worker node | 1   | 2GB   | 20GB    |
+If you are on macOS, Linux, or WSL in Windows you can use [homebrew](https://brew.sh) to install talosctl.
 
-How you provision the machines is up to you, the only requirement is that each machine meet the above system requirements including the machine specs and OS version. Once you have all four machine provisioned, verify the system requirements by running the `uname` command on each machine:
-
-```bash 
-uname -mov
+```sh
+brew install siderolabs/tap/talosctl
 ```
 
-After running the `uname` command you should see the following output:
+If you are on Windows or would like an alternative installation method please refer to [the documentation](https://www.talos.dev/latest/talos-guides/install/talosctl/).
 
-```text
-#1 SMP Debian 6.1.55-1 (2023-09-29) aarch64 GNU/Linux
+## kubectl
+
+Kubernetes provides a CLI to interact with the API.
+If you are on macOS, Linux, or WSL on Windows you can use [homebrew](https://brew.sh) to install kubectl.
+
+```sh
+brew install kubectl
 ```
 
-You maybe surprised to see `aarch64` here, but that is the official name for the Arm Architecture 64-bit instruction set. You will often see `arm64` used by Apple, and the maintainers of the Linux kernel, when referring to support for `aarch64`. This tutorial will use `arm64` consistently throughout to avoid confusion.
+If you are on Windows or would like an alternative installation method please refer to the [Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/).
 
-Next: [setting-up-the-jumpbox](02-jumpbox.md)
+Next: [Download Talos Linux](02-download.md)

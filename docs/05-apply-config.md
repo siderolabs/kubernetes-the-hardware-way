@@ -21,14 +21,14 @@ We need to bootstrap the etcd database to get the Kubernetes components running.
 Run the following command to bootstrap etcd
 
 ```sh
-talosctl bootstrap --nodes $NODE_IP --endpoints $NODE_IP
+talosctl bootstrap --nodes $CP_IP
 ```
 
 Now we can wait for the node and Kubernetes components to become healthy.
 Run the following command to watch the node health as the components are started.
 
 ```sh
-talosctl health --control-plane-nodes $NODE_IP
+talosctl health --control-plane-nodes $CP_IP
 ```
 
 The output should look something like this.

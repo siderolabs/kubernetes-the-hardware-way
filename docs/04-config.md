@@ -6,7 +6,7 @@ All of these steps will be run from your primary computer where you have `talosc
 ## Gen config
 
 The `talosctl` command has a helpful command to create config files for your machines.
-But first we need a little bit of information from your machines to make sure the installation and network works.
+But first we need a little bit of information from your machines to make sure the installation works.
 
 ### Get hard drive information
 
@@ -15,7 +15,7 @@ Everything in Talos Linux is an API and you can get your disk information from t
 > If you left your USB drive plugged in it will show up in the output for this command. It's easier to remove the USB drive first so you're not confused on which disk to use.
 
 ```sh
-talosctl disks --insecure --node $NODE_IP
+talosctl disks --insecure --nodes $CP_IP,$WORKER_IP
 ```
 
 > Make sure you run this command against both of your machines. If they have different install disks you will need to edit the proper configuration files below.
@@ -36,25 +36,25 @@ Now we want to generate our config file for the cluster.
 This command will generate 3 files in the current directory.
 
 ```sh
-talosctl gen config k8s-the-hardware-way https://$NODE_IP:6443 \
+talosctl gen config k8s-the-hardware-way https://$CP_IP:6443 \
   --install-disk "${DEV_INSTALL}" \
   --additional-sans k8s-0 \
   --with-docs=false \
   --with-examples=false
 ```
 
-The controlplane.yaml configuration will be applied to machines that should run the Kubernetes control plane components (eg API server, controller manager, scheduler).
+The `controlplane.yaml` configuration will be applied to machines that should run the Kubernetes control plane components (eg API server, controller manager, scheduler).
 
-The worker.yaml configuration will be applied to machines that should run the Kubernetes worker components (eg kubelet, kube-proxy).
+The `worker.yaml` configuration will be applied to machines that should run the Kubernetes worker components (eg kubelet, kube-proxy).
 
-The talosconfig file is used to authenticate `talosctl` commands to the Talos API after the machine has been provisioned.
+The `talosconfig` file is used to authenticate `talosctl` commands to the Talos API after the machine has been provisioned.
 
 ## Set a stable machine name
 
 In the `gen config` command we set an additional SAN for the Kubernetes certificate named `k8s-0`.
 This isn't required but it saves us from having to set a static IP address lease in your router.
 
-Now we need to modify the `controleplane.yaml` file to set this hostname.
+Now we need to modify the `controlplane.yaml` file to set this hostname.
 
 Edit the file with your favorite text editor.
 You should see a line in the file that looks like this.

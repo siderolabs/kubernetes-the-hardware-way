@@ -22,21 +22,23 @@ You may have limited experience with Linux and Kubernetes and aren't interested 
 Kubernetes The Hardware Way guides you through bootstrapping a basic Kubernetes cluster with all control plane components running on a single node, and one worker node.
 You should have 2 computers to complete this tutorial.
 
+There are alternative configuration instructions if you only have a single computer.
+
 > There is some support for single board computers with Talos Linux but it is not recommended because of their limited resources (CPU and memory) and the extra complexity to install Linux to them.
 
 The ideal computers will have these minimum specs:
 
 - CPU with amd64/x86_64 architecture
-- 8GB of memory
-- 40GB hard drive (ssd preferred)
+- minimum of 8GB of memory
+- minimum of 40GB hard drive (ssd preferred)
 
 The machines should be reachable on the same network as your computer and all computers will need internet access.
 You will also need a USB drive to boot the machines from to install Talos.
 
 Component versions:
 
-- Talos Linux v1.7.x
-- [kubernetes](https://github.com/kubernetes/kubernetes) v1.30.x
+- [Talos Linux](https://talos.dev) v1.7.x
+- [Kubernetes](https://github.com/kubernetes/kubernetes) v1.30.x
 
 All of the other components (e.g. etcd, containerd) will be installed automatically and you shouldn't care about which versions are used.
 

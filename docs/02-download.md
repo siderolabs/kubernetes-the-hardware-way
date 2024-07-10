@@ -29,9 +29,9 @@ This makes it really easy to try different versions of Talos Linux or download v
 Ventoy only has an installer from Windows or Linux so if you are on macOS you will need to manually flash your USB drive.
 
 You can download Ventoy for your OS at [Ventoy.net](https://ventoy.net/en/download.html).
-Extract the archive and run the `Ventoy2Disk.sh` command and provide your USB drive.
+Extract the archive and run the `Ventoy2Disk.sh` command and provide your USB drive an option (e.g. `-i /dev/sdc`).
 
-After Ventoy is installed you can just copy the ISO file to your USB drive and it'll be ready to boot.
+After Ventoy is installed you can copy the ISO file to your USB drive and it'll be ready to boot.
 
 ### Install Etcher (macOS)
 

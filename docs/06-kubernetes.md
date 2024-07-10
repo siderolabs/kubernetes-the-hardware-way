@@ -21,3 +21,5 @@ kubectl get pods -A
 ```
 
 You'll notice that the kube-proxy and flannel CNI pods are already deployed in the cluster.
+
+Next: [Cleanup](99-cleanup.md)

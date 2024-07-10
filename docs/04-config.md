@@ -41,8 +41,8 @@ Now we want to generate our config file for the cluster.
 This command will generate 3 files in the current directory.
 
 ```sh
-talosctl gen config k8s-the-hardware-way https://$CP_IP:6443 \
-  --additional-sans k8s-0
+talosctl gen config k8s-the-hardware-way https://k8s-0:6443 \
+  --additional-sans $CP_IP
 ```
 
 The `controlplane.yaml` configuration will be applied to machines that should run the Kubernetes control plane components (eg API server, controller manager, scheduler).
@@ -53,7 +53,11 @@ The `talosconfig` file is used to authenticate `talosctl` commands to the Talos 
 
 ## Set a stable machine name and install disk
 
-In the `gen config` command we set an additional SAN for the Kubernetes certificate named `k8s-0`.
+In the `gen config` command we set an additional SAN for the Kubernetes certificate with the IP address of the system.
+The problem with using this in environments with DHCP is the IP address might change when the machine reboots.
+To avoid that we are going to use the DNS name `k8s-0`.
+We also need to configure the machine to set that hostname during installation.
+
 We can create a patch file to modify the default configuration for the control plane and worker node.
 
 ```yaml
@@ -72,8 +76,9 @@ machine:
 EOF
 ```
 
-This configuration is going to set a stable hostname for our control plane node so we don't have to worry about the IP address.
 This assumes that you have working DNS on your network.
 If your DNS resolution to hosts isn't stable then you may want to configure your router to set an IP address reservation for the machine or configure a static IP address in the config.
+
+If you cannot do either of those things you can also [try setting a virtual IP address (VIP)](https://www.talos.dev/latest/reference/configuration/v1alpha1/config/#Config.machine.network.interfaces..vip) for your node to broadcast a static IP address on the network.
 
 Next: [Apply the configuration to the machines](05-apply-config.md)

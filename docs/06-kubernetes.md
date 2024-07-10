@@ -31,4 +31,14 @@ kube-system   kube-scheduler-k8s-0            1/1     Running             2 (10m
 
 ```
 
+If this command doesn't work it might be a problem with DNS resolution on your network.
+Try setting the configuration server to the IP address of the control plane with
+
+```sh
+kubectl set clusters.k8s-the-hardware-way.server https://$CP_IP:6443
+```
+
+```
+
 Next: [Cleanup](99-cleanup.md)
+```
